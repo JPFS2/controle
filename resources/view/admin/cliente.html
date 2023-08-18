@@ -1,0 +1,146 @@
+
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class
+       with font-awesome or any other icon font library -->
+    <li class="nav-item">
+      <a href="{{URL}}/admin" class="nav-link">
+        <i class="nav-icon fas fa-edit"></i>
+        <p>
+          Pedido
+        </p>
+      </a>
+    </li>
+
+
+    <li class="nav-header">Cadastros</li>
+
+    <li class="nav-item">
+      <a href="{{URL}}/admin/empresa" class="nav-link">
+        <i class="nav-icon fa fa-university"></i>
+        <p>
+          Empresa
+
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="" class="nav-link active">
+        <i class="nav-icon fa fa-user-circle"></i>
+        <p>
+          Clientes
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{URL}}/admin/produtos" class="nav-link">
+        <i class="nav-icon fa fa-archive"></i>
+        <p>
+          Produto
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="resources/view/admin/index.php" class="nav-link">
+          <i class="nav-icon fas fa-upload"></i>
+          <p>
+              Importar Produtos
+          </p>
+      </a>
+  </li>
+
+
+    <li class="nav-header">Relatórios</li>
+    <li class="nav-item">
+      <a href="{{URL}}/admin/controlepedidos" class="nav-link">
+        <i class="nav-icon fa fa-shopping-cart"></i>
+        <p>
+          Relação de pedidos
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{URL}}/admin/conferenciacaixa" class="nav-link">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+          Caixa
+        </p>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- /.sidebar-menu -->
+
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h3></h3>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Funcionarios</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card card-secondary">
+                <form method="get">
+                <div class="card-header">
+                  <a href="{{URL}}/admin/cliente"> <h3 class="card-title">Novo +</h3></a>
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input type="text" name="cl" class="form-control float-right" placeholder="Search">
+                      <div class="input-group-append">
+                        <button type="submit" class="btn btn-default">
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+                <div class="card-body table-responsive p-0" style="height: 100%;">
+                  <table class="table table-head-fixed text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>Codigo</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Editar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{tr}}
+                    </tbody>
+                  </table>
+                </div>
+                {{pagination}}
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->

@@ -1,0 +1,30 @@
+<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+    <div class="card bg-light d-flex flex-fill  ">
+        <div class="card-header text-muted border-bottom-0">
+            <b>Sessão: </b>{{secao}}
+        </div>
+        <div class="card-body pt-0">
+            <div class="row">
+                <div class="col-7">
+                    <h2 class="lead"><b>{{descricao}}</b></h2>
+                    <h5 class="text-muted text-sm"><b>UND: </b> {{und}} </h5>
+                    <h5 class="text-muted text-sm"><b>PESO: </b> {{peso}} </h5>
+                    <h5 class="text-muted text-sm"><b>QUANTIDADE: </b> {{qtestoque}} </h5>
+                    <h5 class="text-muted text-sm"><b>PREÇO: </b> {{punit}} </h5>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <form action="{{URL}}/addCarrinho" method="post">
+                <div class="text-right">
+                    <label>Qtd</label>
+                    <input type="hidden" name="codigo" value="{{codprod}}">
+                    <input type="hidden" name="punit" value="{{punit}}">
+                    <input type="number" name="qt" class="m-2 col-2" value="1">
+                    <input type="submit" class="btn btn-primary" value="Adicionar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
