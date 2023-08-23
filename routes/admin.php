@@ -50,16 +50,6 @@ $obRouter->post('/admin/addPmesa', [
     }
 ]);
 
-$obRouter->get('/admin/geraCredito', [
-    'middlewares' => [
-        'required-admin-login'
-    ],
-    function ($request) {
-        return new Response(200, Admin\Credito::addPMesa($request));
-    }
-]);
-
-
 // Rota que mostra a tela de login
 $obRouter->get('/admin/login', [
     'middlewares' => [
@@ -197,6 +187,50 @@ $obRouter->post('/admin/produto',[
     ],
     function($request){
         return new Response(200, Admin\Produto::adicionaProduto($request));
+    }
+]);
+$obRouter->get('/admin/creditos',[
+    'middlewares' => [
+        'required-admin-login'
+    ],
+    function($request){
+        return new Response(200, Admin\Credito::getProdutos($request));
+    }
+]);
+
+$obRouter->get('/admin/creditos/{id}',[
+    'middlewares' => [
+        'required-admin-login'
+    ],
+    function($request,$id){
+        return new Response(200, Admin\Credito::editProdutos($request,$id));
+    }
+]);
+
+$obRouter->post('/admin/creditos',[
+    'middlewares' => [
+        'required-admin-login'
+    ],
+    function($request){
+        return new Response(200, Admin\Credito::atualizaProduto($request));
+    }
+]);
+
+$obRouter->get('/admin/credito',[
+    'middlewares' => [
+        'required-admin-login'
+    ],
+    function($request){
+        return new Response(200, Admin\Credito::addProduto($request));
+    }
+]);
+
+$obRouter->post('/admin/credito',[
+    'middlewares' => [
+        'required-admin-login'
+    ],
+    function($request){
+        return new Response(200, Admin\Credito::adicionaProduto($request));
     }
 ]);
 

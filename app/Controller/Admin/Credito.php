@@ -3,13 +3,11 @@
 namespace App\Controller\Admin;
 use App\Controller\Admin\Page;
 use App\Http\Request;
-use App\Model\Entity\Credito;
+use App\Model\Entity\Credito as M_Credito;
 use App\Model\Entity\Secao;
-use App\Model\Entity\Produto as M_Produto;;
-use App\Model\Entity\Criente;
 use App\Utils\View;
 
-class Produto extends Page {
+class Credito extends Page {
     /*
     * Metodo resposave por retornar o conteudo da view do home
     *  @retunr string 
@@ -29,7 +27,7 @@ class Produto extends Page {
                 $selectd = '';
             }
 
-            $secoes .= View::render('admin/produtos/secoes',[
+            $secoes .= View::render('admin/credito/secoes',[
                 'selectd' => $selectd ,
                 'codsecao' => $secao->codsecao,
                 'secao' => $secao->secao
@@ -47,25 +45,25 @@ class Produto extends Page {
      * @param $obPagination
      * @return string
      */
-    public static function getProduto($request,&$obPagination){
+    public static function getCredito($request,&$obPagination){
         $tr = '';
 
         // QUANTIDAD TOTAL DE REGISTROS
 
         $queryParams = $request->getQueryParams();
 
-        $condicao = isset($queryParams['ds']) ? 'peso like "%'.$queryParams['ds'].'%"': '';
-        $results = M_Produto::buscar($condicao,null,null,'*');
+        $condicao = isset($queryParams['ds']) ? 'codcli like "%'.$queryParams['ds'].'%"': '';
+        $results = M_Credito::buscar($condicao,null,null,'*');
 
 
-        while ($produto = $results->fetchObject(M_Produto::class)){
+        while ($credito = $results->fetchObject(M_Credito::class)){
 
-            $tr .= View::render('admin/produtos/produto',[
-                'codprod' => $produto->codprod,
-                'descricao' => $produto->descricao,
-                'peso' => $produto->peso,
-                'qtestoque' => $produto->qtestoque,
-                'punit' => $produto->punit ?? 'NÃO INFORMADO',
+            $tr .= View::render('admin/credito/produto',[
+                'codcred' => $credito->codcred,
+                'codcli' => $credito->codcli,
+                'codprodc' => $credito->codprodc,
+                'dtbaixa' => $credito->dtbaixa,
+                'vlcredito' => $credito->vlcredito ?? 'NÃO INFORMADO',
                 'status' => 'Status'
             ]);
 
@@ -83,14 +81,14 @@ class Produto extends Page {
 
 
 
-        $content = View::render('admin/produto',[
-            'tr' => self::getProduto($request,$obPagination)
+        $content = View::render('admin/credito',[
+            'tr' => self::getCredito($request,$obPagination)
         ]);
 
         return parent::getPage('Controle',$content);
     }
     public static function addProduto($request){
-       $content = View::render('admin/produto_add',[
+       $content = View::render('admin/credito_add',[
            'secao'=> self::getSecao($request,0  )
        ]);
 
@@ -99,7 +97,7 @@ class Produto extends Page {
 
     public static function adicionaProduto($request){
         $postVars = $request->getPostVars();
-        $obProduto = new M_Produto();
+        $obProduto = new M_Credito();
 
         $obProduto->descricao = $postVars['descricao'];
         $obProduto->codsecao = $postVars['codsecao'];
@@ -121,9 +119,9 @@ class Produto extends Page {
      * @return string
      */
     public static function editProdutos($request,$id){
-        $produto = M_Produto::buscar('codprod = '.$id,null,null,'*')->fetchObject(M_Produto::class);
+        $produto = M_Credito::buscar('codprod = '.$id,null,null,'*')->fetchObject(M_credito::class);
 
-        $content = View::render('admin/produto_form',[
+        $content = View::render('admin/credito_form',[
             'codigo' => $produto->codprod,
             'descricao' => $produto->descricao,
             'und' => $produto->und,
@@ -147,7 +145,7 @@ class Produto extends Page {
     public static function atualizaProduto($request){
         $postVars = $request->getPostVars();
 
-        $obProduto = new M_Produto();
+        $obProduto = new M_Credito();
         $obProduto->codprod = $postVars['codprod'];
         $obProduto->descricao = $postVars['descricao'];
         $obProduto->codsecao = $postVars['codsecao'];
